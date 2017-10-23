@@ -1,5 +1,6 @@
 # NAPS2 Remote Scan
-simple app to remote scanning via <a href="https://github.com/cyanfish/naps2">NAPS2</a>
+simple app to remote scanning via <a href="https://github.com/cyanfish/naps2">NAPS2</a><br>
+written in Delphi 10.1 Free
 
 # MANUAL
 1. start NAPS2RemoteScan.exe (add "hide" parameter to hide run)
@@ -10,7 +11,7 @@ simple app to remote scanning via <a href="https://github.com/cyanfish/naps2">NA
   
   
 
-written in Delphi 10.1 Free
+
 
 # ABOUT
 e-mail: corred@outlook.com<br>
