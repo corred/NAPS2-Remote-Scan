@@ -13,6 +13,6 @@ simple app to remote scanning via <a href="https://github.com/cyanfish/naps2">NA
 written in Delphi 10.1 Free
 
 # ABOUT
-e-mail: corred@outlook.com
-twitter: https://twitter.com/artistshot
-my other project: http://artistshot.ru/en/
+e-mail: corred@outlook.com<br>
+twitter: https://twitter.com/artistshot<br>
+my other project: http://artistshot.ru/en/<br>
