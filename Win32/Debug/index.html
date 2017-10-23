@@ -1,0 +1,42 @@
+﻿<html>
+ <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>NAPS2 Remote Scan</title>
+	<link rel="stylesheet" type="text/css" href="style.css" media="all">
+	<meta name="viewport" content="width=400, initial-scale=1">
+ </head>
+ 
+<SCRIPT>
+function ScanStart(){
+
+ //данные в таблице
+ document.getElementById('ScanDiv').innerHTML = "<i>Scanning...</i>";
+ 
+ //отправка запроса на сервер асинхронный	
+ xmlhttp=new XMLHttpRequest();
+ xmlhttp.open("GET", "/scan", true);
+ xmlhttp.onreadystatechange = function() {
+ if (xmlhttp.readyState == 4) {
+	if (xmlhttp.status == 200) {
+		document.getElementById('ScanDiv').innerHTML = '<a href=# onclick="ScanStart()" >Scan</a>';
+	}  
+	else
+		alert('error');
+	}
+ }
+ xmlhttp.send(null);
+ 
+ return true;
+}
+</SCRIPT>
+
+<body>
+
+NAPS2 Remote Scan<br>
+<div id="ScanDiv">
+	<a href=# onclick="ScanStart()" >Scan</a>
+</div>
+
+
+</body>
+</html>

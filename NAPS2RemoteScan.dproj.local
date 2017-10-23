@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.699,=C:\Users\Admin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017.09.27 08:24:00.919,=C:\Users\Admin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017.09.27 08:26:38.212,C:\Users\Admin\Documents\Embarcadero\Studio\Projects\NAPS2 Remote Scan\main.pas=C:\Users\Admin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017.09.27 08:26:38.212,C:\Users\Admin\Documents\Embarcadero\Studio\Projects\NAPS2 Remote Scan\main.dfm=C:\Users\Admin\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017.09.27 08:26:44.428,C:\Users\Admin\Documents\Embarcadero\Studio\Projects\NAPS2 Remote Scan\NAPS2RemoteScan.dproj=C:\Users\Admin\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

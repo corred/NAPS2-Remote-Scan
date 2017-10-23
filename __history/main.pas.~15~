@@ -1,0 +1,121 @@
+unit main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdContext, IdCustomHTTPServer,
+  IdBaseComponent, IdComponent, IdCustomTCPServer, IdHTTPServer, ShellApi,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    IdHTTPServer1: TIdHTTPServer;
+    Label1: TLabel;
+    LabeledEdit1: TLabeledEdit;
+    Label2: TLabel;
+    TrayIcon1: TTrayIcon;
+    procedure IdHTTPServer1CommandGet(AContext: TIdContext;
+      ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
+    procedure FormCreate(Sender: TObject);
+    procedure TrayIcon1DblClick(Sender: TObject);
+  private
+    AppPath: string;
+    procedure ApplicationMinimize(Sender: TObject);
+    procedure apiScan(Params: TStrings; RemoteIP: string);
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+ AppPath:=ExtractFilePath(Application.ExeName);
+ Application.OnMinimize := ApplicationMinimize;
+end;
+
+procedure TForm1.ApplicationMinimize(Sender: TObject);
+begin
+ Hide;
+end;
+
+procedure TForm1.TrayIcon1DblClick(Sender: TObject);
+begin
+ //l;l
+end;
+
+
+procedure TForm1.IdHTTPServer1CommandGet(AContext: TIdContext; ARequestInfo: TIdHTTPRequestInfo; AResponseInfo: TIdHTTPResponseInfo);
+var
+ FileStream: TFileStream;
+ Data: TStringStream;
+ Document,RemoteIP: string;
+begin
+ Document:=ARequestInfo.Document;
+ RemoteIP:=ARequestInfo.RemoteIP;
+ if RemoteIP = '0:0:0:0:0:0:0:1' then
+    RemoteIP:='localhost';
+
+ if Document='/scan' then
+    begin
+    apiScan(ARequestInfo.Params, RemoteIP);
+    Exit;
+    end;
+
+ if Document='/' then
+     begin
+     Document:='/index.html'
+     end;
+
+ Document:=AppPath+Document;
+ if not FileExists(Document) then
+    Exit;
+
+
+ FileStream:=TFileStream.Create(Document, fmOpenRead);
+ AResponseInfo.ContentStream:=FileStream;
+end;
+
+function RunAndWait(const ExeName, ParamString: string): Integer;
+var
+ ShellInfo: TShellExecuteInfo;
+ ExitCode: DWORD;
+begin
+ ShellInfo.cbSize := SizeOf(ShellInfo);
+ ShellInfo.fMask := SEE_MASK_NOCLOSEPROCESS;
+ ShellInfo.Wnd := HWND_DESKTOP;
+ ShellInfo.lpVerb := 'open';
+ ShellInfo.lpFile := PChar(ExeName);
+ ShellInfo.lpParameters := PChar(ParamString);
+ ShellInfo.lpDirectory := PChar(ExtractFilePath(ExeName));
+ ShellInfo.nShow := SW_HIDE;
+ if not ShellExecuteEx(@ShellInfo) then
+   RaiseLastOSError;
+ if ShellInfo.hProcess <> 0 then
+   try
+     WaitForSingleObjectEx(ShellInfo.hProcess, INFINITE, false);
+     GetExitCodeProcess(ShellInfo.hProcess, ExitCode);
+     Result := ExitCode;
+   finally
+     CloseHandle(ShellInfo.hProcess);
+   end
+ else
+   Result := -1;
+end;
+
+procedure TForm1.apiScan(Params: TStrings; RemoteIP: string);
+var ScanUserDocumentsDir: string;
+begin
+ ScanUserDocumentsDir := AppPath+'Scan\'+RemoteIP;
+
+ //scan
+ RunAndWait(LabeledEdit1.Text, '-o "'+ScanUserDocumentsDir+'\scanned$(nnn).jpg"')
+end;
+
+end.
