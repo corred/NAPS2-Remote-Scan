@@ -7,3 +7,12 @@ simple app to remote scanning via <a href="https://github.com/cyanfish/naps2">NA
 3. change port, if need
 4. open any web browser on remote computer
 5. scanned documents saved to <b>Scan\\\<user ip\></b>, this folder can be shared for a remote user
+  
+  
+
+written in Delphi 10.1 Free
+
+# ABOUT
+e-mail: corred@outlook.com
+twitter: https://twitter.com/artistshot
+my other project: http://artistshot.ru/en/
