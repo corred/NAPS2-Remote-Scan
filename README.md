@@ -8,12 +8,3 @@ written in Delphi 10.1 Free
 3. change port, if need
 4. open any web browser on remote computer
 5. scanned documents saved to <b>Scan\\\<user ip\></b>, this folder can be shared for a remote user
-  
-  
-
-
-
-# ABOUT
-e-mail: corred@outlook.com<br>
-twitter: https://twitter.com/artistshot<br>
-my other project: http://artistshot.ru/en/<br>
